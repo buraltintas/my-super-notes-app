@@ -1,0 +1,70 @@
+.logoContainer {
+  width: 100%;
+  max-height: 100vh;
+}
+
+.appNameContainer {
+  width: 40rem;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  font-size: 4rem;
+  font-weight: 600;
+  border-radius: 43px;
+  background: #e0e0e0;
+  box-shadow: 50px 50px 100px #c5c5c5, -50px -50px 100px #fbfbfb;
+  letter-spacing: 1.4px;
+  padding: 2rem 2rem;
+}
+
+.superText {
+  display: inline-block;
+  color: #444;
+  transform: rotate(-10deg) translateY(-0.5rem);
+  font-family: 'Pacifico';
+  text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 10px #fff,
+    0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(0, 255, 255, 0.5),
+    0 0 45px rgba(0, 255, 255, 0.5), 0 0 50px rgba(0, 255, 255, 0.5),
+    0 0 75px rgba(0, 255, 255, 0.5);
+}
+
+.welcomeText {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+}
+
+.loginButtonContainer {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+}
+
+.loginButton {
+  padding: 1rem 2rem;
+  background-color: transparent;
+  font-size: 1.6rem;
+  border: 3px solid rgba(0, 255, 255);
+  border-radius: 4rem;
+  cursor: pointer;
+  color: #777;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.loginButton:hover {
+  background-color: rgba(0, 255, 255, 0.5);
+}
