@@ -10,11 +10,15 @@ const Notes = () => {
     <>
       {notes && notes.length > 1 ? (
         <div className={styles.notesContainer}>
-          {notes.map((note, index) => {
-            if (note.id) {
-              return <Note note={note} key={`${note.id}+${index}`} />;
-            }
-          })}
+          {notes
+            .sort(function (x, y) {
+              return y.time - x.time;
+            })
+            .map((note, index) => {
+              if (note.id) {
+                return <Note note={note} key={`${note.id}+${index}`} />;
+              }
+            })}
         </div>
       ) : (
         <h2 className={styles.noNoteText}>
