@@ -1,0 +1,46 @@
+.headerContainer {
+  width: calc(100% - 8rem);
+  margin: 0 auto;
+  border: 1px solid rgba(0, 255, 255);
+  border-radius: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+}
+
+.welcomeUserText {
+  font-size: 1.8rem;
+  width: 34rem;
+}
+
+.headerButtonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.headerButtonsContainer button {
+  width: 16rem;
+  height: 3rem;
+  color: #555;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid rgba(0, 255, 255);
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: all 0.3s;
+}
+
+.headerButtonsContainer button:hover {
+  background-color: rgba(0, 255, 255, 0.5);
+}
+
+.icon {
+  height: 1.6rem;
+}

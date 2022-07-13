@@ -20,7 +20,6 @@ const db = getFirestore(app);
 const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [notes, setNotes] = useState([]);
 
   const provider = new GoogleAuthProvider();
@@ -50,7 +49,6 @@ const AppProvider = ({ children }) => {
       .then((result) => {
         handleLogin({
           name: result._tokenResponse.fullName,
-          photo: result._tokenResponse.photoUrl,
           email: result._tokenResponse.email,
         });
         setIsLoading(false);
@@ -63,25 +61,21 @@ const AppProvider = ({ children }) => {
 
   const handleLogout = () => {
     signOut(auth);
-    setIsLoggedIn(false);
     setUser({});
+    setNotes([]);
   };
 
   const handleLogin = (user) => {
-    if (user.name && user.photo) {
-      setIsLoggedIn(true);
+    if (user.email) {
       setUser(user);
     }
   };
-
-  console.log(notes);
 
   return (
     <appContext.Provider
       value={{
         user,
         signInWithFirebase,
-        isLoggedIn,
         handleLogout,
         isLoading,
         setIsLoading,
