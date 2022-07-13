@@ -68,3 +68,11 @@
 .text {
   white-space: pre-line;
 }
+
+@media (max-width: 50em) {
+  .icon {
+    opacity: 1;
+    pointer-events: auto;
+    width: 2.6rem;
+  }
+}

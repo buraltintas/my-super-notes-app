@@ -40,7 +40,7 @@ const Note = (props) => {
       <h1>{props.note.title}</h1>
       <p>{props.note.text}</p>
       <div className={styles.noteButtonsContainer}>
-        <div>
+        {/* <div>
           <svg
             className={styles.icon}
             xmlns='http://www.w3.org/2000/svg'
@@ -49,7 +49,7 @@ const Note = (props) => {
           >
             <path d='M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z' />
           </svg>
-        </div>
+        </div> */}
         <div>
           <svg
             onClick={() => deleteNote(props.note.id)}
