@@ -1,0 +1,15 @@
+.notesContainer {
+  width: calc(100% - 8rem);
+  padding: 1rem 3rem;
+  margin: 0 auto;
+  border: 1px solid rgb(2, 186, 186, 0.5);
+  border-radius: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  column-gap: 1rem;
+  row-gap: 1rem;
+}

@@ -1,10 +1,44 @@
 .noteContainer {
-  width: calc(100% - 8rem);
-  padding: 1rem 3rem;
-  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  min-height: 20rem;
+  height: fit-content;
   border: 1px solid rgb(2, 186, 186, 0.5);
   border-radius: 1rem;
-  margin-top: 1rem;
+}
+
+.noteContainer h1 {
+  margin: 1rem;
+}
+
+.noteContainer p {
+  margin: 1rem;
+  font-size: 1.6rem;
+  white-space: pre-line;
+}
+
+.noteButtonsContainer {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.noteContainer:hover .icon {
+  opacity: 1;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.icon {
+  width: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .text {

@@ -9,13 +9,13 @@ const Notes = () => {
   console.log(notes);
 
   return (
-    <>
+    <div className={styles.notesContainer}>
       {notes.map((note, index) => {
         if (note.id) {
           return <Note note={note} key={`${note.id}+${index}`} />;
         }
       })}
-    </>
+    </div>
   );
 };
 

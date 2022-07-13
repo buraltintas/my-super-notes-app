@@ -24,20 +24,22 @@ const NewNote = (props) => {
     e.preventDefault();
     setIsLoading(true);
     const id = cuid();
-    const docRef = await setDoc(doc(db, `${user.email}`, `${id}`), {
-      title: `${form.title}`,
-      text: `${form.text}`,
-      category: `${form.category}`,
-      time: Math.floor(new Date().getTime() / 1000),
-      id: id,
-    });
 
-    console.log(docRef);
-
-    // if (docRef._key.path.segments[1]) {
-    //   setIsLoading(false);
-    //   props.toggleNewNoteForm();
-    // }
+    try {
+      const docRef = await setDoc(doc(db, `${user.email}`, `${id}`), {
+        title: `${form.title}`,
+        text: `${form.text}`,
+        category: `${form.category}`,
+        time: Math.floor(new Date().getTime() / 1000),
+        id: id,
+      });
+      setIsLoading(false);
+      props.toggleNewNoteForm();
+    } catch (err) {
+      alert('Something went wrong, please try again!', err);
+      setIsLoading(false);
+      props.toggleNewNoteForm();
+    }
   };
 
   return (

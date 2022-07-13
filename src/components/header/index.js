@@ -9,7 +9,7 @@ const Header = (props) => {
   return (
     <div className={styles.headerContainer}>
       <div className={styles.welcomeUserText}>
-        Welcome, <span>{user.name}</span>
+        Welcome, <span>{user.name}!</span>
       </div>
       <MiniLogo user={user} />
       <div className={styles.headerButtonsContainer}>
