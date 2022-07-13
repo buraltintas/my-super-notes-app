@@ -13,7 +13,11 @@ const Home = () => {
   return (
     <>
       <Header toggleNewNoteForm={toggleNewNoteForm} showNotes={showNotes} />
-      {showNotes ? <Notes /> : <NewNote />}
+      {showNotes ? (
+        <Notes />
+      ) : (
+        <NewNote toggleNewNoteForm={toggleNewNoteForm} />
+      )}
     </>
   );
 };

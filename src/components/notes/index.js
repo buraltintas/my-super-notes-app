@@ -11,7 +11,9 @@ const Notes = () => {
   return (
     <>
       {notes.map((note, index) => {
-        return <Note note={note} key={`${note.title}+${index}`} />;
+        if (note.id) {
+          return <Note note={note} key={`${note.id}+${index}`} />;
+        }
       })}
     </>
   );

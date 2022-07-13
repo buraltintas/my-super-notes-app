@@ -5,6 +5,9 @@ import {
   getFirestore,
   onSnapshot,
   addDoc,
+  query,
+  where,
+  doc,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -80,6 +83,7 @@ const AppProvider = ({ children }) => {
         isLoading,
         setIsLoading,
         notes,
+        db,
       }}
     >
       {children}
