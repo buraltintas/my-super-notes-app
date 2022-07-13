@@ -1,6 +1,12 @@
 import styles from './Note.module.css';
+import { useContext, useState } from 'react';
+import { appContext } from '../../context';
+import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 
 const Note = (props) => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const { db, user } = useContext(appContext);
+
   const renderDate = (noteDate) => {
     const date = new Date(noteDate * 1000);
     const day = '0' + date.getDate();
@@ -9,15 +15,24 @@ const Note = (props) => {
     const minutes = '0' + date.getMinutes();
 
     return (
-      <span>
-        <p className={styles.dateAndTime}>{`${day.slice(-2)}/${month.slice(
-          -2
-        )}/${date.getFullYear()}`}</p>
-        <p className={styles.dateAndTime}>{`${hours.slice(-2)}:${minutes.slice(
-          -2
-        )}`}</p>
-      </span>
+      <div className={styles.dateContainer}>
+        <p>{`${day.slice(-2)}/${month.slice(-2)}/${date.getFullYear()}`}</p>
+        <p>{`${hours.slice(-2)}:${minutes.slice(-2)}`}</p>
+      </div>
     );
+  };
+
+  const updateNote = async (id) => {
+    const washingtonRef = doc(db, 'cities', 'DC');
+
+    // Set the "capital" field of the city 'DC'
+    await updateDoc(washingtonRef, {
+      capital: true,
+    });
+  };
+
+  const deleteNote = async (id) => {
+    await deleteDoc(doc(db, `${user.email}`, id));
   };
 
   return (
@@ -37,6 +52,7 @@ const Note = (props) => {
         </div>
         <div>
           <svg
+            onClick={() => deleteNote(props.note.id)}
             className={styles.icon}
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 20 20'
@@ -51,6 +67,7 @@ const Note = (props) => {
         </div>
       </div>
       {renderDate(props.note.time)}
+      <div className={styles.categoryContainer}>{props.note.category}</div>
     </div>
   );
 };

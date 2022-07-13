@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './NewNote.module.css';
 import { useContext } from 'react';
 import { appContext } from '../../context';
-import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc } from 'firebase/firestore';
 import LoadingSpinner from '../loadingSpinner';
 import cuid from 'cuid';
 
@@ -87,8 +87,8 @@ const NewNote = (props) => {
               <option value='private' key='private'>
                 private
               </option>
-              <option value='just fun' key='just fun'>
-                just fun
+              <option value='just for fun' key='just for fun'>
+                just for fun
               </option>
               <option value='education' key='education'>
                 education

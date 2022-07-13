@@ -30,3 +30,8 @@ button {
   color: #555;
   background-color: transparent;
 }
+
+body.deleteContainer {
+  overflow: hidden;
+  position: fixed;
+}
