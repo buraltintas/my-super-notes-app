@@ -5,12 +5,10 @@ import {
   getFirestore,
   onSnapshot,
   addDoc,
-  query,
-  where,
-  doc,
 } from 'firebase/firestore';
 import {
   getAuth,
+  onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
@@ -24,19 +22,39 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState({});
   const [notes, setNotes] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
 
   useEffect(() => {
-    onSnapshot(collection(db, `${user.email}`), (snapshot) => {
-      if (snapshot.docs.length > 0) {
-        setNotes(snapshot.docs.map((doc) => doc.data()));
-      } else if (user.email) {
-        initialNewUser();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLoggedIn(true);
+        handleLogin({
+          name: user.displayName,
+          email: user.email,
+        });
+        // ...
+      } else {
+        setLoggedIn(false);
+        // User is signed out
+        // ...
       }
     });
-  }, [user]);
+  }, [auth]);
+
+  useEffect(() => {
+    if (user.email) {
+      onSnapshot(collection(db, `${user.email}`), (snapshot) => {
+        if (snapshot.docs.length > 0) {
+          setNotes(snapshot.docs.map((doc) => doc.data()));
+        } else if (user.email) {
+          initialNewUser();
+        }
+      });
+    }
+  }, [user.email]);
 
   const initialNewUser = async () => {
     const docRef = await addDoc(collection(db, `${user.email}`), {
@@ -54,6 +72,7 @@ const AppProvider = ({ children }) => {
           name: result._tokenResponse.fullName,
           email: result._tokenResponse.email,
         });
+        setLoggedIn(true);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -66,11 +85,13 @@ const AppProvider = ({ children }) => {
     signOut(auth);
     setUser({});
     setNotes([]);
+    setLoggedIn(false);
   };
 
   const handleLogin = (user) => {
     if (user.email) {
       setUser(user);
+      setLoggedIn(true);
     }
   };
 
@@ -84,6 +105,7 @@ const AppProvider = ({ children }) => {
         setIsLoading,
         notes,
         db,
+        loggedIn,
       }}
     >
       {children}

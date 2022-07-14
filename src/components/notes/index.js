@@ -2,12 +2,14 @@ import Note from '../note';
 import { useContext } from 'react';
 import { appContext } from '../../context';
 import styles from './Notes.module.css';
+import LoadingSpinner from '../loadingSpinner';
 
 const Notes = () => {
   const { notes } = useContext(appContext);
 
   return (
     <>
+      {!notes && <LoadingSpinner />}
       {notes && notes.length > 1 ? (
         <div className={styles.notesContainer}>
           {notes

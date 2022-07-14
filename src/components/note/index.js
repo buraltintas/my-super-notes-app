@@ -23,15 +23,6 @@ const Note = (props) => {
     );
   };
 
-  const updateNote = async (id) => {
-    const washingtonRef = doc(db, 'cities', 'DC');
-
-    // Set the "capital" field of the city 'DC'
-    await updateDoc(washingtonRef, {
-      capital: true,
-    });
-  };
-
   const deleteNote = async (id) => {
     await deleteDoc(doc(db, `${user.email}`, id));
   };
@@ -40,11 +31,15 @@ const Note = (props) => {
     setShowEdit(true);
   };
 
+  const cancelEditForm = () => {
+    setShowEdit(false);
+  };
+
   return (
     <>
       <div className={styles.noteContainer}>
         {showEdit ? (
-          <EditNote note={props.note} />
+          <EditNote note={props.note} cancelEditForm={cancelEditForm} />
         ) : (
           <>
             <h1>{props.note.title}</h1>
