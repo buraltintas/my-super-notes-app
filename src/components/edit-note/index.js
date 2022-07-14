@@ -110,7 +110,7 @@ const EditNote = (props) => {
           </div>
           <div className={styles.editButtonsContainer}>
             <button type='submit' className={styles.submitButton}>
-              Submit
+              Update
             </button>
             <button
               onClick={() => props.cancelEditForm()}
