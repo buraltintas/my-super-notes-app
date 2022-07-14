@@ -11,7 +11,6 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
-  signInWithRedirect,
   signOut,
 } from 'firebase/auth';
 
@@ -67,7 +66,7 @@ const AppProvider = ({ children }) => {
 
   const signInWithFirebase = () => {
     setIsLoading(true);
-    signInWithRedirect(auth, provider)
+    signInWithPopup(auth, provider)
       .then((result) => {
         handleLogin({
           name: result._tokenResponse.fullName,
