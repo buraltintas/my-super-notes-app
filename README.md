@@ -13,6 +13,7 @@ Live demo: https://my-super-notes.netlify.app/
 ## What can I do more?
 
 - Adding pictures on notes. Maybe I will work on this. :)
+- Maybe we can share our notes with friends or family via email adresses. I will implement this soon. :)
 
 ## Screenshots
 

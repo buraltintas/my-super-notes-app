@@ -5,7 +5,7 @@ import LoadingSpinner from '../loadingSpinner';
 import Logo from '../logo';
 
 const Login = () => {
-  const { signInWithFirebase, isLoading } = useContext(appContext);
+  const { signInWithGoogle, isLoading } = useContext(appContext);
 
   return (
     <div className={styles.logoContainer}>
@@ -18,7 +18,7 @@ const Login = () => {
       ) : (
         <div className={styles.loginButtonContainer}>
           <button
-            onClick={() => signInWithFirebase()}
+            onClick={() => signInWithGoogle()}
             className={styles.loginButton}
           >
             Login with Google

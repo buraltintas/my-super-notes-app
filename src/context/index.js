@@ -10,6 +10,7 @@ import {
   getAuth,
   onAuthStateChanged,
   GoogleAuthProvider,
+  GithubAuthProvider,
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
@@ -24,7 +25,8 @@ const AppProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const provider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const auth = getAuth();
 
   useEffect(() => {
@@ -64,9 +66,9 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  const signInWithFirebase = () => {
+  const signInWithGoogle = () => {
     setIsLoading(true);
-    signInWithPopup(auth, provider)
+    signInWithPopup(auth, googleProvider)
       .then((result) => {
         handleLogin({
           name: result._tokenResponse.fullName,
@@ -99,7 +101,7 @@ const AppProvider = ({ children }) => {
     <appContext.Provider
       value={{
         user,
-        signInWithFirebase,
+        signInWithGoogle,
         handleLogout,
         isLoading,
         setIsLoading,
