@@ -60,7 +60,7 @@ const Note = (props) => {
             <h1>{props.note.title}</h1>
             <p>{props.note.text}</p>
             <div className={styles.noteButtonsContainer}>
-              <div>
+              {/* <div>
                 <svg
                   onClick={showShareForm}
                   className={styles.icon}
@@ -70,7 +70,7 @@ const Note = (props) => {
                 >
                   <path d='M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z' />
                 </svg>
-              </div>
+              </div> */}
               <div>
                 <svg
                   onClick={showEditForm}
@@ -102,6 +102,7 @@ const Note = (props) => {
             <div className={styles.categoryContainer}>
               {props.note.category}
             </div>
+            {/* {props.note.sharedBy && <div>{props.note.sharedBy.name}</div>} */}
           </>
         )}
       </div>

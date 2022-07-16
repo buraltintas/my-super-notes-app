@@ -34,7 +34,7 @@ const EditNote = (props) => {
       setIsLoading(false);
       props.cancelEditForm();
     } catch (err) {
-      alert('Something went wrong, please try again!', err);
+      alert(err);
       setIsLoading(false);
       props.cancelEditForm();
     }

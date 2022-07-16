@@ -51,19 +51,15 @@ const AppProvider = ({ children }) => {
         if (snapshot.docs.length > 0) {
           setNotes(snapshot.docs.map((doc) => doc.data()));
         } else if (user.email) {
-          initialNewUser();
+          addDoc(collection(db, `${user.email}`), {
+            name: `${user.name}`,
+            email: `${user.email}`,
+            time: Math.floor(new Date().getTime() / 1000),
+          });
         }
       });
     }
-  }, [user.email]);
-
-  const initialNewUser = async () => {
-    const docRef = await addDoc(collection(db, `${user.email}`), {
-      name: `${user.name}`,
-      email: `${user.email}`,
-      time: Math.floor(new Date().getTime() / 1000),
-    });
-  };
+  }, [user]);
 
   const signInWithGoogle = () => {
     setIsLoading(true);

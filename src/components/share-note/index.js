@@ -9,22 +9,23 @@ import {
 } from 'firebase/firestore';
 import { useContext, useState } from 'react';
 import { appContext } from '../../context';
+import cuid from 'cuid';
 
 const ShareNote = (props) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-  const [isEmailRegistered, setEmailRegistered] = useState(false);
   const { db, user } = useContext(appContext);
 
   const shareNoteHandler = async () => {
+    const id = cuid();
     try {
-      const docRef = await setDoc(doc(db, `${email}`, `${props.note.id}`), {
+      const docRef = await setDoc(doc(db, `${email}`, `${id}`), {
         title: `${props.note.title}`,
         text: `${props.note.text}`,
         category: `${props.note.category}`,
         time: Math.floor(new Date().getTime() / 1000),
-        id: props.note.id,
-        shareBy: user,
+        id: id,
+        sharedBy: user.name,
       });
       //   setIsLoading(false);
       props.cancelShareForm();
@@ -37,19 +38,12 @@ const ShareNote = (props) => {
 
   const shareNote = async (e) => {
     e.preventDefault();
-    onSnapshot(collection(db, `${email}`), (snapshot) => {
-      if (snapshot.docs.length > 0) {
-        shareNoteHandler();
-      } else {
-        setError(
-          "We can't find that email. Maybe your friend is not using 'My Super Notes'!"
-        );
 
-        setTimeout(() => {
-          setError('');
-        }, 5000);
-      }
-    });
+    shareNoteHandler();
+
+    setTimeout(() => {
+      setError('');
+    }, 5000);
   };
 
   return (
