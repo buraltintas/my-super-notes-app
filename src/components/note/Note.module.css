@@ -9,13 +9,14 @@
 
 .noteContainer h1 {
   margin: 1rem;
-  max-width: 75%;
+  max-width: 80%;
 }
 
 .noteContainer p {
   margin: 1rem;
   font-size: 1.6rem;
   white-space: pre-line;
+  max-width: 80%;
 }
 
 .noteButtonsContainer {
@@ -25,7 +26,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  flex-direction: column;
+  gap: 2.2rem;
 }
 
 .dateContainer {
@@ -64,6 +66,11 @@
   pointer-events: none;
   cursor: pointer;
   transition: all 0.3s;
+  color: #888;
+}
+
+.icon:hover {
+  color: #444;
 }
 
 .text {

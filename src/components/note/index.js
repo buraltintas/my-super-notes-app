@@ -1,11 +1,13 @@
 import styles from './Note.module.css';
 import { useContext, useState } from 'react';
 import { appContext } from '../../context';
-import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { doc, deleteDoc } from 'firebase/firestore';
 import EditNote from '../edit-note';
+import ShareNote from '../share-note';
 
 const Note = (props) => {
   const [showEdit, setShowEdit] = useState(false);
+  const [showShare, setShowShare] = useState(false);
   const { db, user } = useContext(appContext);
 
   const renderDate = (noteDate) => {
@@ -35,16 +37,40 @@ const Note = (props) => {
     setShowEdit(false);
   };
 
+  const showShareForm = () => {
+    setShowShare(true);
+  };
+
+  const cancelShareForm = () => {
+    setShowShare(false);
+  };
+
   return (
     <>
       <div className={styles.noteContainer}>
-        {showEdit ? (
+        {showShare && !showEdit && (
+          <ShareNote cancelShareForm={cancelShareForm} note={props.note} />
+        )}
+        {showEdit && !showShare && (
           <EditNote note={props.note} cancelEditForm={cancelEditForm} />
-        ) : (
+        )}
+
+        {!showEdit && !showShare && (
           <>
             <h1>{props.note.title}</h1>
             <p>{props.note.text}</p>
             <div className={styles.noteButtonsContainer}>
+              <div>
+                <svg
+                  onClick={showShareForm}
+                  className={styles.icon}
+                  xmlns='http://www.w3.org/2000/svg'
+                  viewBox='0 0 20 20'
+                  fill='currentColor'
+                >
+                  <path d='M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z' />
+                </svg>
+              </div>
               <div>
                 <svg
                   onClick={showEditForm}
