@@ -1,7 +1,7 @@
 .spinner {
   display: inline-block;
   margin: 0 auto;
-  margin-top: 6rem;
+  /* margin-top: 6rem; */
   display: flex;
   align-items: center;
   justify-content: center;

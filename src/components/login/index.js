@@ -5,7 +5,7 @@ import LoadingSpinner from '../loadingSpinner';
 import Logo from '../logo';
 
 const Login = () => {
-  const { signInWithGoogle, isLoading } = useContext(appContext);
+  const { signInWithGoogle, isLoading, loggedIn } = useContext(appContext);
 
   return (
     <div className={styles.logoContainer}>
@@ -13,7 +13,7 @@ const Login = () => {
 
       <div className={styles.welcomeText}>Welcome to your super notes!</div>
 
-      {isLoading ? (
+      {isLoading || loggedIn ? (
         <LoadingSpinner />
       ) : (
         <div className={styles.loginButtonContainer}>
@@ -21,7 +21,7 @@ const Login = () => {
             onClick={() => signInWithGoogle()}
             className={styles.loginButton}
           >
-            Login with Google
+            {loggedIn === false ? 'Login with Google' : <LoadingSpinner />}
           </button>
         </div>
       )}

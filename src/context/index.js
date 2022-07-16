@@ -10,7 +10,6 @@ import {
   getAuth,
   onAuthStateChanged,
   GoogleAuthProvider,
-  GithubAuthProvider,
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
@@ -23,10 +22,10 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState({});
   const [notes, setNotes] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(null);
 
   const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
+
   const auth = getAuth();
 
   useEffect(() => {

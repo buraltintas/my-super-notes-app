@@ -9,6 +9,7 @@
 
 .noteContainer h1 {
   margin: 1rem;
+  max-width: 75%;
 }
 
 .noteContainer p {
