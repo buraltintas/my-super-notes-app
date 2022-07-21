@@ -1,6 +1,8 @@
 .noteContainer {
   position: relative;
-  width: 100%;
+
+  flex-grow: 1;
+  max-width: 100%;
   min-height: 25rem;
   height: fit-content;
   border: 1px solid rgb(2, 186, 186, 0.5);
@@ -12,11 +14,14 @@
   max-width: 80%;
 }
 
-.noteContainer p {
+.text {
+  min-height: 15rem;
+  height: 100%;
+  max-width: 99%;
   margin: 1rem;
   font-size: 1.6rem;
   white-space: pre-line;
-  max-width: 80%;
+  overflow: auto;
 }
 
 .noteButtonsContainer {
@@ -26,7 +31,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   gap: 1.2rem;
 }
 

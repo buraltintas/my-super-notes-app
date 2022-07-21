@@ -58,7 +58,7 @@ const Note = (props) => {
         {!showEdit && !showShare && (
           <>
             <h1>{props.note.title}</h1>
-            <p>{props.note.text}</p>
+            <p className={styles.text}>{props.note.text}</p>
             <div className={styles.noteButtonsContainer}>
               {/* <div>
                 <svg
