@@ -32,6 +32,7 @@ const NewNote = (props) => {
         category: `${form.category}`,
         time: Math.floor(new Date().getTime() / 1000),
         id: id,
+        isDone: false,
       });
       setIsLoading(false);
       props.toggleNewNoteForm();
