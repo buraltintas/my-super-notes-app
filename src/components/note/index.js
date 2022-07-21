@@ -37,9 +37,9 @@ const Note = (props) => {
     setShowEdit(false);
   };
 
-  const showShareForm = () => {
-    setShowShare(true);
-  };
+  // const showShareForm = () => {
+  //   setShowShare(true);
+  // };
 
   const cancelShareForm = () => {
     setShowShare(false);
