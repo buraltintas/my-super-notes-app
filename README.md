@@ -4,7 +4,7 @@ This is a simple and fast taking note application. You can login with your Googl
 
 I just wanted to keep it simple and fast.
 
-You can edit delete your notes. You will select category for your note.
+You can edit, delete or set as done your notes. You will select category for your note.
 
 ## Demo
 
@@ -14,6 +14,7 @@ Live demo: https://my-super-notes.netlify.app/
 
 - Adding pictures on notes. Maybe I will work on this. :)
 - Maybe we can share our notes with friends or family via email adresses. I will implement this soon. :)
+- Sorting and a search bar will be useful.
 
 ## Screenshots
 
