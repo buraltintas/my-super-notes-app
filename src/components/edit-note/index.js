@@ -16,7 +16,7 @@ const EditNote = (props) => {
 
   const { db, user, setIsLoading, isLoading } = useContext(appContext);
 
-  const updateNote = async (e) => {
+  const editNoteHandler = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -45,7 +45,7 @@ const EditNote = (props) => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <form onSubmit={updateNote} className={styles.newNoteForm}>
+        <form onSubmit={editNoteHandler} className={styles.newNoteForm}>
           <div>
             <label htmlFor='title'>Title</label>
             <input

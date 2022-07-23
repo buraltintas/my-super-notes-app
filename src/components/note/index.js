@@ -3,11 +3,11 @@ import { useContext, useState } from 'react';
 import { appContext } from '../../context';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import EditNote from '../edit-note';
-import ShareNote from '../share-note';
+import DeleteNote from '../delete-note';
 
 const Note = (props) => {
   const [showEdit, setShowEdit] = useState(false);
-  const [showShare, setShowShare] = useState(false);
+  const [showDeleteForm, setshowDeleteForm] = useState(false);
   const { db, user } = useContext(appContext);
 
   const renderDate = (noteDate) => {
@@ -25,8 +25,8 @@ const Note = (props) => {
     );
   };
 
-  const deleteNote = async (id) => {
-    await deleteDoc(doc(db, `${user.email}`, id));
+  const deleteNote = async () => {
+    await deleteDoc(doc(db, `${user.email}`, props.note.id));
   };
 
   const showEditForm = () => {
@@ -49,12 +49,12 @@ const Note = (props) => {
     }
   };
 
-  // const showShareForm = () => {
-  //   setShowShare(true);
-  // };
+  const openDeleteForm = () => {
+    setshowDeleteForm(true);
+  };
 
-  const cancelShareForm = () => {
-    setShowShare(false);
+  const cancelDeleteForm = () => {
+    setshowDeleteForm(false);
   };
 
   return (
@@ -64,29 +64,22 @@ const Note = (props) => {
           props.note.isDone === true && styles.doneNoteContainer
         }`}
       >
-        {showShare && !showEdit && (
-          <ShareNote cancelShareForm={cancelShareForm} note={props.note} />
+        {showDeleteForm && !showEdit && (
+          <DeleteNote
+            deleteNote={deleteNote}
+            cancelDeleteForm={cancelDeleteForm}
+            title={props.note.title}
+          />
         )}
-        {showEdit && !showShare && (
+        {showEdit && !showDeleteForm && (
           <EditNote note={props.note} cancelEditForm={cancelEditForm} />
         )}
 
-        {!showEdit && !showShare && (
+        {!showEdit && !showDeleteForm && (
           <>
             <h1>{props.note.title}</h1>
             <p className={styles.text}>{props.note.text}</p>
             <div className={styles.noteButtonsContainer}>
-              {/* <div>
-                <svg
-                  onClick={showShareForm}
-                  className={styles.icon}
-                  xmlns='http://www.w3.org/2000/svg'
-                  viewBox='0 0 20 20'
-                  fill='currentColor'
-                >
-                  <path d='M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z' />
-                </svg>
-              </div> */}
               {props.note.isDone === true ? (
                 <div>
                   <svg
@@ -133,7 +126,7 @@ const Note = (props) => {
               </div>
               <div>
                 <svg
-                  onClick={() => deleteNote(props.note.id)}
+                  onClick={openDeleteForm}
                   className={styles.icon}
                   xmlns='http://www.w3.org/2000/svg'
                   viewBox='0 0 20 20'
@@ -168,7 +161,6 @@ const Note = (props) => {
                 </svg>
               </div>
             )}
-            {/* {props.note.sharedBy && <div>{props.note.sharedBy.name}</div>} */}
           </>
         )}
       </div>

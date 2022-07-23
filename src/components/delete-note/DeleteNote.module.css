@@ -1,0 +1,50 @@
+.deleteFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.deleteButtonsContainer {
+  margin-top: 2rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.submitButton {
+  width: 20rem;
+  height: 3rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid rgb(2, 186, 186, 0.5);
+  border-radius: 2rem;
+  transition: all 0.3s;
+}
+
+.submitButton:hover {
+  background-color: rgba(0, 255, 255, 0.5);
+}
+
+.cancelButton {
+  width: 20rem;
+  height: 3rem;
+  cursor: pointer;
+  border-radius: 2rem;
+  background-color: rgba(255, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 0, 0) !important;
+  transition: all 0.3s;
+}
+
+.cancelButton:hover {
+  background-color: rgba(255, 0, 0, 0.5) !important;
+}
+
+@media (max-width: 31.25em) {
+  .deleteButtonsContainer {
+    flex-direction: column;
+  }
+}
