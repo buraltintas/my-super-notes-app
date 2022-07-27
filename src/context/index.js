@@ -24,8 +24,8 @@ const AppProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
   const [loggedIn, setLoggedIn] = useState(null);
   const [searchText, setSearchText] = useState('');
-  const [filterCategory, setFilterCategory] = useState('all');
-  const [filterStatus, setFilterStatus] = useState('all');
+  const [filterCategory, setFilterCategory] = useState('');
+  const [filterStatus, setFilterStatus] = useState('');
 
   const googleProvider = new GoogleAuthProvider();
 

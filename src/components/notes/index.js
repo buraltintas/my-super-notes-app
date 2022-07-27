@@ -10,29 +10,28 @@ const Notes = () => {
   const [notesData, setNotesData] = useState(notes);
 
   useEffect(() => {
-    if (
-      searchText === '' &&
-      filterCategory === 'all' &&
-      filterStatus === 'all'
-    ) {
-      setNotesData(notes);
-    }
-
-    if (searchText !== '') {
-      setNotesData(
-        notesData.filter(
-          (note) =>
-            note?.title?.toLowerCase().includes(searchText.toLowerCase()) ||
-            note?.text?.toLowerCase().includes(searchText.toLowerCase())
-        )
+    const filteredData = () => {
+      return notes.filter(
+        (note) =>
+          (filterCategory ? filterCategory === note.category : note) &&
+          (filterStatus === 'true'
+            ? note.isDone === true
+            : filterStatus === 'false'
+            ? note.isDone === false
+            : note) &&
+          (searchText
+            ? note?.text?.toLowerCase().includes(searchText?.toLowerCase())
+            : note)
       );
-    }
+    };
+
+    setNotesData(filteredData());
   }, [searchText, filterCategory, notes, filterStatus]);
 
   return (
     <>
       {!notes && <LoadingSpinner />}
-      {notesData && notesData.length > 0 ? (
+      {notesData && notes.length > 1 ? (
         <div className={styles.notesContainer}>
           {notesData
             .sort(function (x, y) {

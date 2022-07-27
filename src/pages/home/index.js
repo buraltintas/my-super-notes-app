@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <>
       <Header toggleNewNoteForm={toggleNewNoteForm} showNotes={showNotes} />
-      {/* {showNotes && notes.length > 0 && <SearchCategory />} */}
+      {showNotes && notes.length > 0 && <SearchCategory />}
       {showNotes && notes.length === 0 && <LoadingSpinner />}
       {showNotes && notes.length > 0 && <Notes />}
       {!showNotes && notes && <NewNote toggleNewNoteForm={toggleNewNoteForm} />}

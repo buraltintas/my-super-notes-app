@@ -16,7 +16,7 @@ const SearchCategory = () => {
     <div className={styles.searchCategoryContainer}>
       <input
         type='text'
-        placeholder='Search in title or text'
+        placeholder='Search in note text'
         onChange={(e) => setSearchText(e.target.value)}
         value={searchText}
       />
@@ -27,7 +27,7 @@ const SearchCategory = () => {
           onChange={(e) => setFilterCategory(e.target.value)}
           value={filterCategory}
         >
-          <option value='all' key='all'>
+          <option value='' key='all'>
             all
           </option>
           <option value='todo' key='todo'>
@@ -69,13 +69,13 @@ const SearchCategory = () => {
           onChange={(e) => setFilterStatus(e.target.value)}
           value={filterStatus}
         >
-          <option value='all' key='all'>
+          <option value='' key='all'>
             all
           </option>
-          <option value='done' key='done'>
+          <option value={true} key='done'>
             done
           </option>
-          <option value='undone' key='undone'>
+          <option value={false} key='undone'>
             undone
           </option>
         </select>
