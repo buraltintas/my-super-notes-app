@@ -1,18 +1,40 @@
 import Note from '../note';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { appContext } from '../../context';
 import styles from './Notes.module.css';
 import LoadingSpinner from '../loadingSpinner';
 
 const Notes = () => {
-  const { notes } = useContext(appContext);
+  const { notes, searchText, filterCategory, filterStatus } =
+    useContext(appContext);
+  const [notesData, setNotesData] = useState(notes);
+
+  useEffect(() => {
+    if (
+      searchText === '' &&
+      filterCategory === 'all' &&
+      filterStatus === 'all'
+    ) {
+      setNotesData(notes);
+    }
+
+    if (searchText !== '') {
+      setNotesData(
+        notesData.filter(
+          (note) =>
+            note?.title?.toLowerCase().includes(searchText.toLowerCase()) ||
+            note?.text?.toLowerCase().includes(searchText.toLowerCase())
+        )
+      );
+    }
+  }, [searchText, filterCategory, notes, filterStatus]);
 
   return (
     <>
       {!notes && <LoadingSpinner />}
-      {notes && notes.length > 1 ? (
+      {notesData && notesData.length > 0 ? (
         <div className={styles.notesContainer}>
-          {notes
+          {notesData
             .sort(function (x, y) {
               return y.time - x.time;
             })

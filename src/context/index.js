@@ -23,6 +23,9 @@ const AppProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [notes, setNotes] = useState([]);
   const [loggedIn, setLoggedIn] = useState(null);
+  const [searchText, setSearchText] = useState('');
+  const [filterCategory, setFilterCategory] = useState('all');
+  const [filterStatus, setFilterStatus] = useState('all');
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -103,6 +106,12 @@ const AppProvider = ({ children }) => {
         notes,
         db,
         loggedIn,
+        searchText,
+        setSearchText,
+        filterCategory,
+        setFilterCategory,
+        filterStatus,
+        setFilterStatus,
       }}
     >
       {children}
