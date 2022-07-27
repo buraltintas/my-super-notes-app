@@ -31,7 +31,8 @@ const Notes = () => {
   return (
     <>
       {!notes && <LoadingSpinner />}
-      {notesData && notes.length > 1 ? (
+
+      {notesData && notes.length > 1 && (
         <div className={styles.notesContainer}>
           {notesData
             .sort(function (x, y) {
@@ -42,11 +43,13 @@ const Notes = () => {
                 return <Note note={note} key={`${note.id}+${index}`} />;
               }
             })}
+          {(filterCategory || filterStatus || searchText) &&
+            notesData.length === 0 && (
+              <h2 className={styles.noNoteText}>
+                No notes found matching your filters!
+              </h2>
+            )}
         </div>
-      ) : (
-        <h2 className={styles.noNoteText}>
-          You have no notes! Start adding a super one!
-        </h2>
       )}
     </>
   );

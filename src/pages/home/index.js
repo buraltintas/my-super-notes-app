@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from '../../components/notes/Notes.module.css';
 import Header from '../../components/header';
 import NewNote from '../../components/new-note';
 import Notes from '../../components/notes';
@@ -18,9 +19,15 @@ const Home = () => {
   return (
     <>
       <Header toggleNewNoteForm={toggleNewNoteForm} showNotes={showNotes} />
-      {showNotes && notes.length > 0 && <SearchCategory />}
+      {showNotes && notes.length > 1 ? (
+        <SearchCategory />
+      ) : (
+        <h2 className={styles.noNoteText}>
+          You have no notes! Start adding a super one!
+        </h2>
+      )}
       {showNotes && notes.length === 0 && <LoadingSpinner />}
-      {showNotes && notes.length > 0 && <Notes />}
+      {showNotes && notes.length > 1 && <Notes />}
       {!showNotes && notes && <NewNote toggleNewNoteForm={toggleNewNoteForm} />}
     </>
   );
