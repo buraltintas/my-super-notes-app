@@ -19,12 +19,9 @@ const Home = () => {
   return (
     <>
       <Header toggleNewNoteForm={toggleNewNoteForm} showNotes={showNotes} />
-      {showNotes && notes.length > 1 ? (
-        <SearchCategory />
-      ) : (
-        <h2 className={styles.noNoteText}>
-          You have no notes! Start adding a super one!
-        </h2>
+      {showNotes && notes.length > 1 && <SearchCategory />}
+      {notes.length < 2 && showNotes && (
+        <h2 className={styles.noNoteText}>Start adding a super note!</h2>
       )}
       {showNotes && notes.length === 0 && <LoadingSpinner />}
       {showNotes && notes.length > 1 && <Notes />}
