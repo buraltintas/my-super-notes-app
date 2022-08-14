@@ -20,7 +20,7 @@ const SearchCategory = () => {
         onChange={(e) => setSearchText(e.target.value)}
         value={searchText}
       />
-      <div>
+      <div className={styles.filterContainer}>
         <label htmlFor='category'>Filter by category</label>
         <select
           id='category'
@@ -62,7 +62,7 @@ const SearchCategory = () => {
           </option>
         </select>
       </div>
-      <div>
+      <div className={styles.filterContainer}>
         <label htmlFor='status'>Show</label>
         <select
           id='status'

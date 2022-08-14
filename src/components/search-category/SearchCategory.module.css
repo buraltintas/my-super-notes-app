@@ -12,11 +12,6 @@
   justify-content: center;
 }
 
-.searchCategoryContainer {
-  display: flex;
-  align-items: center;
-}
-
 .searchCategoryContainer input {
   width: 23rem;
   background-color: transparent;
@@ -53,5 +48,21 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+
+  .filterContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .searchCategoryContainer input {
+    width: calc(100% - 1rem);
+    margin-right: 0;
+  }
+
+  .searchCategoryContainer select {
+    margin-right: 0;
   }
 }
